@@ -1168,6 +1168,18 @@ input, select, textarea {
   margin-bottom: 1.5rem;
 }
 
+.empty-state .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.empty-state .btn svg {
+  color: var(--white);
+  margin-bottom: 0;
+}
+
 .no-data {
   text-align: center;
   padding: 2rem;
