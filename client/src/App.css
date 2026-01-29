@@ -302,13 +302,82 @@ input, select, textarea {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
+  .navbar {
+    padding: 0.5rem;
+  }
+
+  .navbar-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  /* Première ligne : Logo + Theme + Logout */
+  .navbar-brand {
+    order: 1;
+  }
+
+  .navbar-user {
+    order: 2;
+    gap: 0.5rem;
+  }
+
+  /* Deuxième ligne : Menu navigation */
   .navbar-menu {
+    order: 3;
+    width: 100%;
+    justify-content: center;
     gap: 0.25rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--gray-light);
   }
 
   .nav-link {
-    padding: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    flex: 1;
+    justify-content: center;
+    max-width: 80px;
+  }
+
+  .btn-theme-toggle {
+    width: 36px;
+    height: 36px;
+  }
+
+  .btn-logout {
+    padding: 0.4rem 0.5rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .navbar-menu {
+    gap: 0.15rem;
+  }
+
+  .nav-link {
+    padding: 0.4rem 0.5rem;
+    max-width: 70px;
+  }
+
+  .nav-link svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .btn-theme-toggle {
+    width: 32px;
+    height: 32px;
+  }
+
+  .btn-theme-toggle svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .btn-logout svg {
+    width: 16px;
+    height: 16px;
   }
 }
 
