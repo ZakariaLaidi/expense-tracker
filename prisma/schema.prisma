@@ -1,0 +1,89 @@
+// Schéma Prisma pour l'application Expense Tracker
+// Définit les modèles User, Category et Transaction avec leurs relations
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Modèle Utilisateur
+// Stocke les informations d'authentification et profil utilisateur
+model User {
+  id           String        @id @default(cuid())
+  name         String
+  email        String        @unique
+  password     String        // Mot de passe haché avec bcrypt
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  
+  // Relations
+  transactions Transaction[]
+  categories   Category[]
+  
+  @@map("users")
+}
+
+// Modèle Catégorie
+// Permet de classifier les transactions (Alimentation, Loyer, Loisirs, etc.)
+model Category {
+  id           String        @id @default(cuid())
+  name         String
+  icon         String?       // Icône optionnelle (emoji ou nom d'icône)
+  color        String?       // Couleur en format hexadécimal (#FFFFFF)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  
+  // Relation avec l'utilisateur propriétaire
+  userId       String
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // Relations
+  transactions Transaction[]
+  
+  @@unique([name, userId]) // Une catégorie unique par nom et par utilisateur
+  @@map("categories")
+}
+
+// Modèle Transaction
+// Représente une dépense ou un revenu
+model Transaction {
+  id          String      @id @default(cuid())
+  amount      Float       // Montant de la transaction
+  description String?     // Description optionnelle
+  date        DateTime    @default(now()) // Date de la transaction
+  type        TransactionType // Type: EXPENSE (dépense) ou INCOME (revenu)
+  
+  // Champs de récurrence
+  isRecurring Boolean     @default(false) // Transaction récurrente
+  recurrence  Recurrence? // Fréquence de récurrence
+  
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  
+  // Relations
+  userId      String
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  categoryId  String
+  category    Category    @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  
+  @@map("transactions")
+}
+
+// Enum pour le type de transaction
+enum TransactionType {
+  EXPENSE // Dépense
+  INCOME  // Revenu
+}
+
+// Enum pour la fréquence de récurrence
+enum Recurrence {
+  DAILY   // Quotidienne
+  WEEKLY  // Hebdomadaire
+  MONTHLY // Mensuelle
+  YEARLY  // Annuelle
+}
