@@ -31,7 +31,7 @@ const Navbar = () => {
             className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
           >
             <LayoutDashboard size={20} />
-            <span>Tableau de bord</span>
+            <span>Finances</span>
           </NavLink>
 
           <NavLink 
