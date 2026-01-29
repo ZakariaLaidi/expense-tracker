@@ -324,8 +324,9 @@ input, select, textarea {
     gap: 0.5rem;
   }
 
-  /* Deuxième ligne : Menu navigation */
+  /* Deuxième ligne : Menu navigation - VISIBLE */
   .navbar-menu {
+    display: flex !important;
     order: 3;
     width: 100%;
     justify-content: space-around;
@@ -336,12 +337,18 @@ input, select, textarea {
   }
 
   .nav-link {
+    display: flex !important;
     padding: 0.6rem 1rem;
     flex: 1;
     justify-content: center;
+    align-items: center;
     max-width: none;
     background: var(--gray-light);
     border-radius: var(--radius);
+  }
+
+  .nav-link span {
+    display: none;
   }
 
   .nav-link.active {
@@ -350,8 +357,9 @@ input, select, textarea {
   }
 
   .nav-link svg {
-    width: 22px;
-    height: 22px;
+    display: block !important;
+    width: 24px;
+    height: 24px;
   }
 
   .btn-theme-toggle {
