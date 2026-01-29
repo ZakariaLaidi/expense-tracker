@@ -4,10 +4,12 @@
 
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { LayoutDashboard, ArrowRightLeft, Tags, LogOut, Wallet } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
+import { LayoutDashboard, ArrowRightLeft, Tags, LogOut, Wallet, Sun, Moon } from 'lucide-react';
 
 const Navbar = () => {
   const { user, logout } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -50,6 +52,15 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-user">
+          {/* Bouton de changement de thème */}
+          <button 
+            className="btn-theme-toggle" 
+            onClick={toggleTheme}
+            title={theme === 'light' ? 'Activer le mode sombre' : 'Activer le mode clair'}
+          >
+            {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+          </button>
+
           <span className="user-name">Bonjour, {user?.name}</span>
           <button className="btn-logout" onClick={handleLogout}>
             <LogOut size={18} />
