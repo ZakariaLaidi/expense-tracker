@@ -308,47 +308,48 @@ input, select, textarea {
   }
 
   .navbar-container {
-    flex-wrap: wrap;
+    display: flex;
+    flex-wrap: nowrap;
     justify-content: space-between;
-    gap: 0.5rem;
+    align-items: center;
+    gap: 0.25rem;
   }
 
-  /* Première ligne : Logo + Theme + Logout */
+  /* Logo à gauche */
   .navbar-brand {
     order: 1;
-    flex: 1;
+    flex-shrink: 0;
   }
 
-  .navbar-user {
-    order: 2;
-    gap: 0.5rem;
-  }
-
-  /* Deuxième ligne : Menu navigation - VISIBLE */
+  /* Menu navigation au centre - HORIZONTAL */
   .navbar-menu {
     display: flex !important;
-    order: 3;
-    width: 100%;
-    justify-content: space-around;
-    gap: 0.5rem;
-    padding-top: 0.75rem;
-    margin-top: 0.5rem;
-    border-top: 1px solid var(--gray-light);
+    flex-direction: row !important;
+    order: 2;
+    flex: 1;
+    justify-content: center;
+    gap: 0.25rem;
+    padding: 0;
+    margin: 0;
+    border: none;
   }
 
   .nav-link {
     display: flex !important;
-    padding: 0.6rem 1rem;
-    flex: 1;
+    padding: 0.5rem;
+    flex: 0;
     justify-content: center;
     align-items: center;
-    max-width: none;
-    background: var(--gray-light);
+    background: transparent;
     border-radius: var(--radius);
   }
 
   .nav-link span {
     display: none;
+  }
+
+  .nav-link:hover {
+    background: var(--gray-light);
   }
 
   .nav-link.active {
@@ -358,14 +359,26 @@ input, select, textarea {
 
   .nav-link svg {
     display: block !important;
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
+  }
+
+  /* Boutons à droite */
+  .navbar-user {
+    order: 3;
+    gap: 0.25rem;
+    flex-shrink: 0;
   }
 
   .btn-theme-toggle {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
   }
+
+  .btn-logout {
+    padding: 0.4rem;
+  }
+}
 
   .btn-logout {
     padding: 0.4rem 0.5rem;
