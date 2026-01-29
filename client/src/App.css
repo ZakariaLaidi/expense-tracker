@@ -380,11 +380,6 @@ input, select, textarea {
   }
 }
 
-  .btn-logout {
-    padding: 0.4rem 0.5rem;
-  }
-}
-
 @media (max-width: 380px) {
   .navbar-menu {
     gap: 0.25rem;
