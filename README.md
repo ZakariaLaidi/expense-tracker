@@ -1,251 +1,128 @@
-# 💰 Expense Tracker API
+# 💰 ExpenseTracker
 
-Une API REST robuste pour la gestion des finances personnelles, construite avec **Node.js**, **Express**, et **Prisma ORM**.
+Application web complète de gestion des finances personnelles permettant de suivre ses dépenses et revenus au quotidien.
 
-## 🚀 Fonctionnalités
+![ExpenseTracker](https://img.shields.io/badge/Version-1.0.0-4ECDC4?style=for-the-badge)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
 
-- ✅ **Authentification JWT** - Inscription et connexion sécurisées
-- ✅ **Gestion des transactions** - CRUD complet pour les dépenses et revenus
-- ✅ **Catégorisation** - Organisation des transactions par catégorie
-- ✅ **Statistiques** - Agrégation des données pour les graphiques
-- ✅ **Filtrage** - Recherche par mois, type, catégorie
-- ✅ **Déploiement Vercel** - Configuration prête pour le déploiement
+## 📝 Description
 
-## 📁 Structure du projet
+**ExpenseTracker** est une application de suivi budgétaire intuitive qui vous aide à prendre le contrôle de vos finances. Visualisez vos dépenses, catégorisez vos transactions et analysez vos habitudes financières grâce à des graphiques interactifs.
+
+## ✨ Fonctionnalités
+
+### 🔐 Authentification
+- Inscription et connexion sécurisées avec JWT
+- Protection des routes et données personnelles
+
+### 💳 Gestion des Transactions
+- Ajout de dépenses et revenus
+- Modification et suppression des transactions
+- Filtrage par date, type et catégorie
+- Support des transactions récurrentes
+
+### 📂 Catégories Personnalisées
+- Création de catégories avec icônes emoji
+- Couleurs personnalisables
+- Organisation flexible des dépenses
+
+### 📊 Tableau de Bord (Finances)
+- Résumé financier (solde, revenus, dépenses)
+- Graphique en camembert par catégorie
+- Graphique d'évolution mensuelle
+- Liste des transactions récentes
+
+### 🌙 Mode Sombre
+- Thème clair / sombre
+- Préférence sauvegardée automatiquement
+
+### 📱 Responsive
+- Interface adaptée mobile, tablette et desktop
+
+## 🛠️ Technologies Utilisées
+
+### Backend
+- **Node.js** - Runtime JavaScript
+- **Express.js** - Framework web
+- **Prisma ORM** - Gestion de base de données
+- **PostgreSQL** - Base de données (Supabase)
+- **JWT** - Authentification sécurisée
+- **bcryptjs** - Hashage des mots de passe
+
+### Frontend
+- **React 18** - Bibliothèque UI
+- **Vite** - Build tool rapide
+- **React Router DOM** - Navigation SPA
+- **Axios** - Requêtes HTTP
+- **Recharts** - Graphiques interactifs
+- **Lucide React** - Icônes modernes
+
+### Déploiement
+- **Vercel** - Hébergement backend et frontend
+- **Supabase** - Base de données PostgreSQL cloud
+
+## 📁 Structure du Projet
 
 ```
 expense-tracker/
-├── prisma/
-│   └── schema.prisma          # Schéma de la base de données
-├── src/
-│   ├── config/
-│   │   ├── database.js        # Configuration Prisma Client
-│   │   └── index.js           # Configuration centralisée
-│   ├── controllers/
-│   │   ├── auth.controller.js       # Authentification
-│   │   ├── transaction.controller.js # Transactions
-│   │   ├── category.controller.js   # Catégories
-│   │   ├── stats.controller.js      # Statistiques
+├── client/                    # Frontend React
+│   ├── src/
+│   │   ├── components/        # Composants réutilisables
+│   │   │   ├── Navbar.jsx
+│   │   │   └── ProtectedRoute.jsx
+│   │   ├── context/           # Contextes React
+│   │   │   ├── AuthContext.jsx
+│   │   │   └── ThemeContext.jsx
+│   │   ├── pages/             # Pages de l'application
+│   │   │   ├── Dashboard.jsx
+│   │   │   ├── Transactions.jsx
+│   │   │   ├── Categories.jsx
+│   │   │   ├── Login.jsx
+│   │   │   └── Register.jsx
+│   │   ├── services/          # Services API
+│   │   │   └── api.js
+│   │   ├── config/            # Configuration
+│   │   ├── App.jsx            # Composant principal
+│   │   └── App.css            # Styles globaux
+│   └── index.html
+│
+├── src/                       # Backend Express
+│   ├── config/                # Configuration
+│   │   ├── database.js
 │   │   └── index.js
-│   ├── middlewares/
-│   │   ├── auth.middleware.js       # Vérification JWT
-│   │   ├── error.middleware.js      # Gestion des erreurs
-│   │   └── index.js
-│   ├── routes/
+│   ├── controllers/           # Logique métier
+│   │   ├── auth.controller.js
+│   │   ├── transaction.controller.js
+│   │   ├── category.controller.js
+│   │   └── stats.controller.js
+│   ├── middlewares/           # Middlewares
+│   │   ├── auth.middleware.js
+│   │   └── error.middleware.js
+│   ├── routes/                # Routes API
 │   │   ├── auth.routes.js
 │   │   ├── transaction.routes.js
 │   │   ├── category.routes.js
-│   │   ├── stats.routes.js
-│   │   └── index.js
+│   │   └── stats.routes.js
 │   └── index.js               # Point d'entrée
-├── .env.example               # Variables d'environnement
-├── package.json
+│
+├── prisma/
+│   └── schema.prisma          # Schéma de base de données
+│
 ├── vercel.json                # Configuration Vercel
-└── README.md
+└── package.json
 ```
 
-## 🛠️ Installation
+## 🚀 Liens
 
-### 1. Cloner et installer les dépendances
+- **Frontend** : [expense-tracker-pbdq.vercel.app](https://expense-tracker-pbdq.vercel.app)
+- **Backend API** : [expense-tracker-livid-six-89.vercel.app](https://expense-tracker-livid-six-89.vercel.app)
 
-```bash
-cd expense-tracker
-npm install
-```
+## 👤 Auteur
 
-### 2. Configurer les variables d'environnement
-
-```bash
-cp .env.example .env
-```
-
-Éditez le fichier `.env` :
-
-```env
-DATABASE_URL="postgresql://user:password@localhost:5432/expense_tracker"
-JWT_SECRET="votre_cle_secrete_super_securisee"
-JWT_EXPIRES_IN="7d"
-PORT=3000
-NODE_ENV="development"
-```
-
-### 3. Initialiser la base de données
-
-```bash
-# Générer le client Prisma
-npx prisma generate
-
-# Créer les tables (migration)
-npx prisma migrate dev --name init
-
-# (Optionnel) Ouvrir Prisma Studio
-npx prisma studio
-```
-
-### 4. Démarrer le serveur
-
-```bash
-# Mode développement (avec hot-reload)
-npm run dev
-
-# Mode production
-npm start
-```
-
-## 📚 Endpoints API
-
-### Authentification (`/api/auth`)
-
-| Méthode | Endpoint | Description | Auth |
-|---------|----------|-------------|------|
-| POST | `/register` | Inscription | ❌ |
-| POST | `/login` | Connexion | ❌ |
-| GET | `/me` | Profil utilisateur | ✅ |
-
-### Transactions (`/api/transactions`)
-
-| Méthode | Endpoint | Description | Auth |
-|---------|----------|-------------|------|
-| GET | `/` | Liste des transactions | ✅ |
-| GET | `/:id` | Détail d'une transaction | ✅ |
-| POST | `/` | Créer une transaction | ✅ |
-| PUT | `/:id` | Modifier une transaction | ✅ |
-| DELETE | `/:id` | Supprimer une transaction | ✅ |
-
-**Query params pour GET `/`:**
-- `month` - Filtrer par mois (format: YYYY-MM)
-- `type` - Filtrer par type (EXPENSE/INCOME)
-- `categoryId` - Filtrer par catégorie
-- `limit` - Nombre de résultats (défaut: 50)
-- `offset` - Décalage pour pagination
-
-### Catégories (`/api/categories`)
-
-| Méthode | Endpoint | Description | Auth |
-|---------|----------|-------------|------|
-| GET | `/` | Liste des catégories | ✅ |
-| POST | `/` | Créer une catégorie | ✅ |
-| PUT | `/:id` | Modifier une catégorie | ✅ |
-| DELETE | `/:id` | Supprimer une catégorie | ✅ |
-
-### Statistiques (`/api/stats`)
-
-| Méthode | Endpoint | Description | Auth |
-|---------|----------|-------------|------|
-| GET | `/summary` | Résumé financier | ✅ |
-| GET | `/by-category` | Répartition par catégorie | ✅ |
-| GET | `/monthly` | Évolution mensuelle | ✅ |
-| GET | `/recent` | Transactions récentes | ✅ |
-
-## 📝 Exemples de requêtes
-
-### Inscription
-
-```bash
-curl -X POST http://localhost:3000/api/auth/register \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "John Doe",
-    "email": "john@example.com",
-    "password": "password123"
-  }'
-```
-
-### Connexion
-
-```bash
-curl -X POST http://localhost:3000/api/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{
-    "email": "john@example.com",
-    "password": "password123"
-  }'
-```
-
-### Créer une transaction
-
-```bash
-curl -X POST http://localhost:3000/api/transactions \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer YOUR_TOKEN" \
-  -d '{
-    "amount": 50.00,
-    "description": "Courses au supermarché",
-    "type": "EXPENSE",
-    "categoryId": "CATEGORY_ID"
-  }'
-```
-
-### Récupérer les statistiques par catégorie
-
-```bash
-curl -X GET "http://localhost:3000/api/stats/by-category?month=2026-01" \
-  -H "Authorization: Bearer YOUR_TOKEN"
-```
-
-## 🚀 Déploiement sur Vercel
-
-### 1. Configurer une base PostgreSQL
-
-Utilisez un service comme:
-- [Neon](https://neon.tech/)
-- [Supabase](https://supabase.com/)
-- [Railway](https://railway.app/)
-- [PlanetScale](https://planetscale.com/)
-
-### 2. Configurer les secrets Vercel
-
-```bash
-vercel secrets add database_url "postgresql://..."
-vercel secrets add jwt_secret "votre_secret"
-vercel secrets add jwt_expires_in "7d"
-```
-
-### 3. Déployer
-
-```bash
-vercel --prod
-```
-
-## 🔧 Scripts disponibles
-
-```bash
-npm start           # Démarrer en production
-npm run dev         # Démarrer en développement
-npm run prisma:generate  # Générer le client Prisma
-npm run prisma:migrate   # Exécuter les migrations
-npm run prisma:studio    # Ouvrir Prisma Studio
-```
-
-## 📄 Modèles de données
-
-### User
-- `id` - Identifiant unique
-- `name` - Nom de l'utilisateur
-- `email` - Email (unique)
-- `password` - Mot de passe haché
-- `createdAt` - Date de création
-
-### Category
-- `id` - Identifiant unique
-- `name` - Nom de la catégorie
-- `icon` - Emoji ou icône
-- `color` - Couleur hexadécimale
-- `userId` - Propriétaire
-
-### Transaction
-- `id` - Identifiant unique
-- `amount` - Montant
-- `description` - Description
-- `date` - Date de la transaction
-- `type` - EXPENSE ou INCOME
-- `userId` - Propriétaire
-- `categoryId` - Catégorie associée
-
-## 📜 Licence
-
-MIT
+Développé par **Zakaria Laidi**
 
 ---
 
-Développé avec ❤️ pour le projet Expense Tracker
+*Projet réalisé avec ❤️*
